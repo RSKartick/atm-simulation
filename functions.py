@@ -1,3 +1,5 @@
+import datetime
+
 #Display Balance
 def balance(account):
     print("Your balance is: ", f"{account['balance']}")
@@ -23,7 +25,7 @@ def withdraw(account, amount):
 def statement(account):
     print("Your transaction record is: ")
     for transaction in account['transactions']:
-        print(transaction.strip())
+        print(f"{transaction.strip()} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 # - Login
 def login(accounts):
