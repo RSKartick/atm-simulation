@@ -8,7 +8,7 @@ def balance(account):
 # - Withdraw Money
 def deposit(account, amount):
     account["balance"] += amount
-    account["transactions"].append(f"+{amount}")
+    account["transactions"].append(f"+{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{amount} credited to your account")
 
 # - Deposit Money
@@ -18,14 +18,14 @@ def withdraw(account, amount):
         return
     
     account["balance"] -= amount
-    account["transactions"].append(f"-{amount}")
+    account["transactions"].append(f"-{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{amount} debited from your account")
 
 # - Statement (transaction record)
 def statement(account):
     print("Your transaction record is: ")
     for transaction in account['transactions']:
-        print(f"{transaction.strip()} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{transaction.strip()}")
 
 # - Login
 def login(accounts):
