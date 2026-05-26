@@ -5,13 +5,13 @@ def balance(account):
     print("Your balance is: ", f"{account['balance']}")
     print("\n")
 
-# - Withdraw Money
+# - Deposit Money
 def deposit(account, amount):
     account["balance"] += amount
     account["transactions"].append(f"+{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{amount} credited to your account")
 
-# - Deposit Money
+# - Withdraw Money
 def withdraw(account, amount):
     if amount > account["balance"]:
         print("Insufficient balance")
