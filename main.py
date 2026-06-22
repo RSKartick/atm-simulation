@@ -1,5 +1,6 @@
 import bankdata
 import functions
+import helper
 
 account = functions.login(bankdata.accounts)
 while account is None:
@@ -17,15 +18,15 @@ while True:
     print("6. Exit")
     print()
 
-    choice = int(input("Enter your choice: "))
+    choice = helper.int_error("Enter your choice: ")
 
     if choice == 1:
         functions.balance(account)
     elif choice == 2:
-        amount = float(input("Enter the amount to withdraw: "))
+        amount = helper.amount_error("Enter the amount to withdraw: ")
         functions.withdraw(account, amount)
     elif choice == 3:
-        amount = float(input("Enter the amount you want to deposit: "))
+        amount = helper.amount_error("Enter the amount you want to deposit: ")
         functions.deposit(account, amount)
     elif choice == 4:
         functions.statement(account)

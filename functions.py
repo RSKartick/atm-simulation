@@ -1,4 +1,6 @@
+import json
 import datetime
+import helper
 
 #Display Balance
 def balance(account):
@@ -7,16 +9,21 @@ def balance(account):
 
 # - Deposit Money
 def deposit(account, amount):
-    account["balance"] += amount
-    account["transactions"].append(f"+{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{amount} credited to your account")
+    if amount <= 0:
+        print("Invalid Amount.")
+    else:
+        account["balance"] += amount
+        account["transactions"].append(f"+{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{amount} credited to your account")
 
 # - Withdraw Money
 def withdraw(account, amount):
-    if amount > account["balance"]:
+    if amount <= 0:
+        print("Invalid Amount.")
+        return
+    elif amount > account["balance"]:
         print("Insufficient balance")
         return
-    
     account["balance"] -= amount
     account["transactions"].append(f"-{amount} on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{amount} debited from your account")
@@ -29,11 +36,11 @@ def statement(account):
 
 # - Login
 def login(accounts):
-    account_no = int(input("Enter account number: "))
+    account_no = helper.int_error("Enter account number: ")
     if account_no not in accounts:
         print("Account not found.")
         return None
-    pin = int(input("Enter PIN: "))
+    pin = helper.int_error("Enter PIN: ")
     if accounts[account_no]["pin"] != pin:
         print("Incorrect PIN.")
         return None
